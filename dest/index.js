@@ -84,7 +84,8 @@ app.get('/videos', (req, res) => {
 });
 app.post('/videos', (req, res) => {
     let createdAt = new Date();
-    let publicationDate = createdAt.getDate() + 1;
+    let publicationDate = new Date(createdAt);
+    publicationDate.setDate(publicationDate.getDate() + 1);
     if (isItNotString(req.body.title) || isItNotString(req.body.author) || (req.body.title ? req.body.title.length > 40 : 0) || (req.body.author ? req.body.author.length > 20 : 0) || notCorrectResolutions(req.body.availableResolutions)) {
         let errorsMessages = [];
         if (isItNotString(req.body.title) || req.body.title.length > 40) {
