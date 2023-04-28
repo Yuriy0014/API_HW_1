@@ -122,7 +122,7 @@ app.post('/videos', (req, res) => {
         }
 
         res.status(STATUSES_HTTP.BAD_REQUEST_400)
-            .json({"errorsMessages": errorsMessages})
+            .json({errorsMessages: errorsMessages})
         return;
     }
 
@@ -205,7 +205,7 @@ app.put('/videos/:id', (req, res) => {
             }
 
             res.status(STATUSES_HTTP.BAD_REQUEST_400)
-                .json({"errorsMessages": errorsMessages})
+                .json({errorsMessages: errorsMessages})
             return;
 
         }
