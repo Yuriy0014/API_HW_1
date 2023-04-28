@@ -164,14 +164,14 @@ app.put('/videos/:id', (req, res) => {
             if (isItNotString(req.body.title) || req.body.title.length > 40) {
                 let titleErrorMessage = {
                     "message": "Title is incorrect",
-                    "field": "Title"
+                    "field": "title"
                 }
                 errorsMessages.push(titleErrorMessage)
             }
             if (isItNotString(req.body.author) || req.body.author.length > 20) {
                 let titleErrorMessage = {
                     "message": "Author is incorrect",
-                    "field": "Author"
+                    "field": "author"
                 }
                 errorsMessages.push(titleErrorMessage)
             }
