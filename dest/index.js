@@ -110,7 +110,7 @@ app.post('/videos', (req, res) => {
             errorsMessages.push(titleErrorMessage);
         }
         res.status(exports.STATUSES_HTTP.BAD_REQUEST_400)
-            .json(errorsMessages);
+            .json({ "errorsMessages": errorsMessages });
         return;
     }
     const createdVideo = {
@@ -184,7 +184,7 @@ app.put('/videos/:id', (req, res) => {
             errorsMessages.push(titleErrorMessage);
         }
         res.status(exports.STATUSES_HTTP.BAD_REQUEST_400)
-            .json(errorsMessages);
+            .json({ "errorsMessages": errorsMessages });
         return;
     }
     const foundVideo = db.videos.find(c => c.id === +req.params.id);
