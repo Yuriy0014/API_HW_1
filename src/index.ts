@@ -92,7 +92,7 @@ app.get('/videos', (req, res) => {
 
 app.post('/videos', (req, res) => {
 
-    let createdAt = new Date();
+    let createdAt = new Date().toISOString();
     let publicationDate = new Date(createdAt)
     publicationDate.setDate(publicationDate.getDate() + 1);
 
@@ -132,7 +132,7 @@ app.post('/videos', (req, res) => {
         "author": req.body.author,
         "canBeDownloaded": false,
         "minAgeRestriction": null,
-        "createdAt": String(createdAt),
+        "createdAt": createdAt,
         "publicationDate": String(publicationDate),
         "availableResolutions": req.body.availableResolutions
     }

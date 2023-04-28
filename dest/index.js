@@ -83,7 +83,7 @@ app.get('/videos', (req, res) => {
         .json(foundVideos);
 });
 app.post('/videos', (req, res) => {
-    let createdAt = new Date();
+    let createdAt = new Date().toISOString();
     let publicationDate = new Date(createdAt);
     publicationDate.setDate(publicationDate.getDate() + 1);
     if (isItNotString(req.body.title) || isItNotString(req.body.author) || (req.body.title ? req.body.title.length > 40 : 0) || (req.body.author ? req.body.author.length > 20 : 0) || notCorrectResolutions(req.body.availableResolutions)) {
@@ -119,7 +119,7 @@ app.post('/videos', (req, res) => {
         "author": req.body.author,
         "canBeDownloaded": false,
         "minAgeRestriction": null,
-        "createdAt": String(createdAt),
+        "createdAt": createdAt,
         "publicationDate": String(publicationDate),
         "availableResolutions": req.body.availableResolutions
     };
