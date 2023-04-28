@@ -139,7 +139,7 @@ app.put('/videos/:id', (req, res) => {
     if (isItNotString(req.body.title) || isItNotString(req.body.author) || req.body.title.length > 40 || req.body.author.length > 20
         || notCorrectResolutions(req.body.availableResolutions) || typeof (req.body.canBeDownloaded) !== "boolean"
         || !Number.isInteger(req.body.minAgeRestriction) || !(req.body.minAgeRestriction > 0) || !(req.body.minAgeRestriction < 19)
-        || (isItNotString(req.body.publicationDate) && isNotDate(req.body.publicationDate))) {
+        || (isItNotString(req.body.publicationDate) || isNotDate(req.body.publicationDate))) {
         let errorsMessages = [];
         if (isItNotString(req.body.title) || req.body.title.length > 40) {
             let titleErrorMessage = {
@@ -176,7 +176,7 @@ app.put('/videos/:id', (req, res) => {
             };
             errorsMessages.push(titleErrorMessage);
         }
-        if ((isItNotString(req.body.publicationDate) && isNotDate(req.body.publicationDate))) {
+        if ((isItNotString(req.body.publicationDate) || isNotDate(req.body.publicationDate))) {
             let titleErrorMessage = {
                 "message": "publicationDate is not correct",
                 "field": "publicationDate"
