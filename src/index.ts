@@ -96,7 +96,7 @@ app.post('/videos', (req, res) => {
     let publicationDate = createdAt.getDate() + 1;
 
 
-    if (isItNotString(req.body.title) || isItNotString(req.body.author) || req.body.title.length > 40 || req.body.title.author.length > 20 || notCorrectResolutions(req.body.availableResolutions)) {
+    if (isItNotString(req.body.title) || isItNotString(req.body.author) || (req.body.title ? req.body.title.length > 40 : 0) || (req.body.author ? req.body.author.length > 20 : 0)  || notCorrectResolutions(req.body.availableResolutions)) {
         let errorsMessages = [];
         if (isItNotString(req.body.title) || req.body.title.length > 40) {
             let titleErrorMessage = {
