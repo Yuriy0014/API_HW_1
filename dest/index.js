@@ -120,7 +120,7 @@ app.post('/videos', (req, res) => {
         "canBeDownloaded": false,
         "minAgeRestriction": null,
         "createdAt": createdAt,
-        "publicationDate": String(publicationDate),
+        "publicationDate": publicationDate.toISOString(),
         "availableResolutions": req.body.availableResolutions
     };
     db.videos.push(createdVideo);
@@ -136,7 +136,7 @@ app.get('/videos/:id', (req, res) => {
     res.json(foundVideo);
 });
 app.put('/videos/:id', (req, res) => {
-    if (isItNotString(req.body.title) || isItNotString(req.body.author) || req.body.title.length > 40 || req.body.title.author.length > 20
+    if (isItNotString(req.body.title) || isItNotString(req.body.author) || req.body.title.length > 40 || req.body.author.length > 20
         || notCorrectResolutions(req.body.availableResolutions) || typeof (req.body.canBeDownloaded !== "boolean")
         || (typeof (req.body.minAgeRestriction !== "integer") && req.body.minAgeRestriction > 0 && req.body.minAgeRestriction < 19)
         || (isItNotString(req.body.publicationDate) && isNotDate(req.body.publicationDate))) {
